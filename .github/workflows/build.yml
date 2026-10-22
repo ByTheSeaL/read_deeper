@@ -83,6 +83,49 @@ jobs:
           name: read-deeper-extension-${{ env.VERSION }}
           path: dist/read-deeper-extension-${{ env.VERSION }}.zip
 
+  obsidian:
+    needs: version
+    runs-on: ubuntu-latest
+    env:
+      VERSION: ${{ needs.version.outputs.version }}
+    defaults:
+      run:
+        working-directory: obsidian-plugin
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: npm ci
+
+      - name: Tests (engine flow + jsdom smoke test of the plugin)
+        run: npm test
+
+      - name: Type-check and bundle
+        run: npm run build
+
+      - name: Stamp the version and zip
+        run: |
+          mkdir -p ../dist/read-deeper
+          cp main.js manifest.json styles.css ../dist/read-deeper/
+
+          node -e '
+            const fs = require("fs");
+            const path = "../dist/read-deeper/manifest.json";
+            const manifest = JSON.parse(fs.readFileSync(path, "utf8"));
+            manifest.version = process.env.VERSION;
+            fs.writeFileSync(path, JSON.stringify(manifest, null, "\t") + "\n");
+          '
+
+          (cd ../dist && zip -qr "read-deeper-obsidian-${VERSION}.zip" read-deeper)
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: read-deeper-obsidian-${{ env.VERSION }}
+          path: dist/read-deeper-obsidian-${{ env.VERSION }}.zip
+
   android:
     needs: version
     runs-on: ubuntu-latest
@@ -135,7 +178,7 @@ jobs:
           path: dist/read-deeper-${{ env.VERSION }}.apk
 
   release:
-    needs: [version, extension, android]
+    needs: [version, extension, android, obsidian]
     if: needs.version.outputs.release == 'true'
     runs-on: ubuntu-latest
     env:

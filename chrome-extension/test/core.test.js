@@ -7,9 +7,11 @@ import {
 	SseReader,
 	buildLookupMessage,
 	emptyData,
+	exportFileName,
 	ensureChannel,
 	gistOf,
 	isRefinement,
+	lookupMarkdown,
 	markdownToHtml,
 	maxTokensFor,
 	mergeChannels,
@@ -156,3 +158,10 @@ test("markdown: code, bold, lists, escaping", () => {
 	assert.equal(markdownToHtml("**`return_exceptions=True`** works"), "<p><strong><code>return_exceptions=True</code></strong> works</p>");
 	assert.equal(markdownToHtml("`**not bold**`"), "<p><code>**not bold**</code></p>");
 });
+
+for (const c of cases.export) {
+	test(`export: ${c.name}`, () => {
+		assert.equal(exportFileName(c.lookup), c.fileName);
+		assert.equal(lookupMarkdown(c.lookup, c.channel), c.markdown);
+	});
+}

@@ -7,7 +7,11 @@ keep going. It works through:
 - **Android:** highlight text, then pick **Read Deeper** from the text-selection
   menu or from **Share**. Or open the app and type into the search box.
 - **Chrome:** highlight text, then right-click and choose **Explain with Read
-  Depth**, or press **Alt+Shift+D**. Or click the toolbar icon and type.
+  Deeper**, or press **Alt+Shift+D**. Or click the toolbar icon and type.
+- **Obsidian:** select text in a note, then right-click → **Explain with Read
+  Deeper**, or run the command *Read Deeper: Explain the selected text* (works
+  in reading view and PDFs too; give it a hotkey). Or open the panel from the
+  ribbon and type.
 
 Explanations come from the model you choose through
 [OpenRouter](https://openrouter.ai) (default `z-ai/glm-5.3-flash`, about
@@ -17,7 +21,7 @@ what you've already looked up there, even days later. The channel box shows
 which channel a lookup went into. Type a name there to pin a channel or to move
 a lookup to another one.
 
-**Markdown history (Android only):** choose a folder in Settings → *Markdown
+**Markdown history (Android and Obsidian):** choose a folder in Settings → *Markdown
 history folder*, e.g. one inside an Obsidian vault, and every lookup is saved
 there as a Markdown note: the term, its channel, the explanation and any
 follow-ups, with YAML front matter. The note is updated when the lookup is
@@ -25,8 +29,9 @@ re-explained, followed up, moved to another channel, or its channel is
 renamed. **Export all now** writes notes for the lookups made before you set
 the folder. With no folder set, nothing is written.
 
-There is no server: both clients talk to OpenRouter directly. Settings, history
-and channels are kept separately on each device.
+There is no server: every client talks to OpenRouter directly. Settings, history
+and channels are kept separately on each device, except that Obsidian's are in
+the vault, so Obsidian on every synced device shares them.
 
 See [PLAN.md](PLAN.md) for the design.
 
@@ -54,7 +59,14 @@ other branches are attached to their workflow run under **Actions**.
 3. For a new build, unzip over the same folder and click **Reload** on the
    extension's card. Settings and history are kept.
 
-Then, in either one, open **Settings**, paste your OpenRouter API key and press
+**Obsidian:**
+
+1. Unzip `read-deeper-obsidian-<version>.zip` into your vault's
+   `.obsidian/plugins/` folder, so you get `.obsidian/plugins/read-deeper/`.
+   With Syncthing, every synced device gets it.
+2. Settings → Community plugins → enable **Read Deeper**, on each device.
+
+Then, in any of them, open **Settings**, paste your OpenRouter API key and press
 **Test**.
 
 ## One-time setup: the Android signing key
