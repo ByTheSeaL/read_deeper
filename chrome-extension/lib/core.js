@@ -590,6 +590,77 @@ export function isRefinement(originalText, newText) {
 	return Boolean(original) && updated !== original && updated.includes(original);
 }
 
+// ─── Markdown history ───────────────────────────────────────────────────────
+// Mirrors Core.kt's exportFileName and lookupMarkdown, so every client writes
+// the same note for the same lookup. Times are in local time.
+
+function yamlString(text) {
+	return "\"" + String(text)
+		.replace(/\\/g, "\\\\")
+		.replace(/"/g, "\\\"")
+		.replace(/\n/g, "\\n")
+		.replace(/\r/g, "\\r")
+		.replace(/\t/g, "\\t") + "\"";
+}
+
+function pad(n, width = 2) {
+	return String(n).padStart(width, "0");
+}
+
+/*
+ * The file name a lookup is saved under: date, time and the term, safe for
+ * every filesystem and for Obsidian links. Fixed at first export and kept on
+ * the lookup, so re-explaining it rewrites the same file.
+ */
+export function exportFileName(lookup) {
+	const t    = new Date(lookup.createdAt);
+	const term = (lookup.text || "")
+		.replace(/[\\/:*?"<>|#^\[\]\u0000-\u001f]/g, " ")
+		.replace(/\s+/g, " ")
+		.trim()
+		.slice(0, 60)
+		.replace(/[.\s]+$/, "") || "lookup";
+
+	return `${pad(t.getFullYear(), 4)}-${pad(t.getMonth() + 1)}-${pad(t.getDate())} ${pad(t.getHours())}${pad(t.getMinutes())} ${term}.md`;
+}
+
+/* A lookup, its follow-ups and its channel as a Markdown note with YAML front matter. */
+export function lookupMarkdown(lookup, channelName) {
+	const t           = new Date(lookup.createdAt);
+	const sourceTitle = lookup.sourceTitle || "";
+	const sourceUrl   = lookup.sourceUrl || "";
+	const out         = [
+		"---",
+		`term: ${yamlString(lookup.text)}`,
+		`channel: ${yamlString(channelName)}`,
+		`date: ${pad(t.getFullYear(), 4)}-${pad(t.getMonth() + 1)}-${pad(t.getDate())}T${pad(t.getHours())}:${pad(t.getMinutes())}`
+	];
+
+	if (sourceTitle) out.push(`source_title: ${yamlString(sourceTitle)}`);
+	if (sourceUrl) out.push(`source: ${yamlString(sourceUrl)}`);
+
+	out.push(`model: ${yamlString(lookup.model)}`, "tags: [read-deeper]", "---", "", `# ${oneLine(lookup.text, 200)}`, "");
+
+	let where = `**Channel:** ${channelName}`;
+
+	if (sourceUrl) where += ` · **Source:** [${oneLine(sourceTitle || sourceUrl, 200)}](${sourceUrl})`;
+	else if (sourceTitle) where += ` · **Source:** ${oneLine(sourceTitle, 200)}`;
+
+	out.push(where);
+
+	if ((lookup.context || "").trim()) out.push("", `> ${oneLine(lookup.context, 2000)}`);
+
+	out.push("", (lookup.explanation || "").trim());
+
+	if ((lookup.thread || []).length) {
+		out.push("", "## Follow-ups");
+
+		for (const turn of lookup.thread) out.push("", `### ${oneLine(turn.q, 300)}`, "", (turn.a || "").trim());
+	}
+
+	return out.join("\n") + "\n";
+}
+
 // ─── Rendering ──────────────────────────────────────────────────────────────
 
 function escapeHtml(text) {

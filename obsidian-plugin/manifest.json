@@ -1,0 +1,9 @@
+{
+	"author": "Carl",
+	"description": "Select a word, phrase or sentence and get a short, plain explanation that builds on what you've looked up before.",
+	"id": "read-deeper",
+	"isDesktopOnly": false,
+	"minAppVersion": "1.5.0",
+	"name": "Read Deeper",
+	"version": "0.1.0"
+}

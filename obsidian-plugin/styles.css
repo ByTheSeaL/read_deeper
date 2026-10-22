@@ -1,0 +1,149 @@
+/* The Read Deeper panel. Obsidian's own variables, so it follows the theme. */
+
+.read-deeper {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4-2);
+	padding: var(--size-4-3);
+}
+
+.read-deeper .rd-answer,
+.read-deeper .rd-thread {
+	font-size: var(--font-text-size);
+	line-height: var(--line-height-normal);
+	user-select: text;
+}
+
+.read-deeper .rd-answer pre,
+.read-deeper .rd-thread pre {
+	overflow-x: auto;
+}
+
+.read-deeper .rd-channel {
+	flex: 1;
+	min-width: 0;
+}
+
+.read-deeper .rd-channel-row {
+	align-items: center;
+	font-size: var(--font-ui-small);
+}
+
+.read-deeper .rd-empty {
+	color: var(--text-muted);
+	font-size: var(--font-ui-small);
+	padding: var(--size-4-4) 0;
+}
+
+.read-deeper .rd-error {
+	color: var(--text-error);
+}
+
+.read-deeper .rd-follow {
+	flex: 1;
+	min-width: 0;
+}
+
+.read-deeper .rd-footer {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--size-4-2);
+}
+
+.read-deeper .rd-footer:empty,
+.read-deeper .rd-status:empty {
+	display: none;
+}
+
+.read-deeper .rd-ghost {
+	background: transparent;
+	box-shadow: none;
+	color: var(--text-muted);
+	font-size: var(--font-ui-small);
+	padding: var(--size-2-1) var(--size-4-2);
+}
+
+.read-deeper .rd-label {
+	color: var(--text-muted);
+}
+
+.read-deeper .rd-meta {
+	color: var(--text-faint);
+	font-size: var(--font-ui-smaller);
+	margin-inline-start: auto;
+}
+
+.read-deeper .rd-pin {
+	font-size: var(--font-ui-smaller);
+	white-space: nowrap;
+}
+
+.read-deeper .rd-pin.rd-pinned {
+	color: var(--text-accent);
+}
+
+.read-deeper .rd-query {
+	flex: 1;
+	font-size: var(--font-ui-medium);
+	font-weight: var(--font-semibold);
+	min-width: 0;
+	resize: none;
+}
+
+.read-deeper .rd-recent-item {
+	border-radius: var(--radius-s);
+	cursor: var(--cursor-link);
+	padding: var(--size-4-1) var(--size-4-2);
+}
+
+.read-deeper .rd-recent-item:hover {
+	background-color: var(--background-modifier-hover);
+}
+
+.read-deeper .rd-recent-meta {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+.read-deeper .rd-recent-term {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.read-deeper .rd-recent-title {
+	color: var(--text-muted);
+	font-size: var(--font-ui-small);
+	font-weight: var(--font-semibold);
+}
+
+.read-deeper .rd-row {
+	display: flex;
+	gap: var(--size-4-2);
+}
+
+.read-deeper .rd-settings-link {
+	cursor: var(--cursor-link);
+}
+
+.read-deeper .rd-status {
+	color: var(--text-muted);
+	font-size: var(--font-ui-small);
+}
+
+.read-deeper .rd-turn {
+	border-top: 1px solid var(--background-modifier-border);
+	padding-top: var(--size-4-2);
+}
+
+.read-deeper .rd-turn-question {
+	color: var(--text-muted);
+	font-weight: var(--font-semibold);
+	margin-bottom: var(--size-4-1);
+}
+
+.read-deeper.is-busy .rd-icon {
+	opacity: 0.5;
+	pointer-events: none;
+}

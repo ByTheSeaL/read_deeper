@@ -557,3 +557,31 @@ Added after the first release:
 - **Chrome:** not supported. Extensions can only write inside the Downloads
   folder, which doesn't suit an automatic history record.
 
+## 12. Obsidian plugin (third client)
+
+Added 2026-10-23. Source in `obsidian-plugin/`; plan note in the vault:
+`work money admin/current/Read Deeper - Obsidian plugin plan.md`.
+
+- **Same logic:** imports `chrome-extension/lib/core.js`, `prompt.js` and
+  `openrouter.js` as they are. `src/engine.ts` is `background.js`'s lookup,
+  follow-up and channel flow against the plugin's store. OpenRouter allows
+  any origin (CORS `*`), so `fetch` streaming works on desktop and mobile.
+- **Trigger:** the editor's right-click menu on a selection; a command that
+  takes the editor selection or any on-screen selection (reading view, PDFs);
+  a ribbon icon that opens the panel to type in.
+- **Panel:** a right-sidebar view with the lookup screen of §1a, and a list
+  of recent lookups when none is open.
+- **Context and source:** the paragraph around the selection; the note as a
+  wikilink (`[[Note]]`) in `sourceTitle`, so the saved lookup links back.
+- **Storage:** settings and history in the plugin's `data.json`. Syncthing
+  syncs it, so Obsidian on every device shares one history (unlike Chrome
+  and Android, which stay separate). `onExternalSettingsChange` reloads it.
+- **API key:** in Obsidian's secret store (1.11.4+), which stays on the
+  device. Older Obsidian falls back to `data.json`.
+- **Markdown history:** on by default, folder `LLMs/sessions/read_deeper`
+  (a setting; empty = off). `exportFileName` and `lookupMarkdown` now live in
+  `core.js` too, tested against the same `shared/test-cases.json` cases as
+  Android's `Core.kt`.
+- **Builds:** CI job `obsidian` runs the tests, bundles with esbuild and adds
+  `read-deeper-obsidian-<version>.zip` to each release.
+
