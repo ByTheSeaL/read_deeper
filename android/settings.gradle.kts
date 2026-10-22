@@ -14,5 +14,5 @@ dependencyResolutionManagement {
 	}
 }
 
-rootProject.name = "ReadDepth"
+rootProject.name = "ReadDeeper"
 include(":app")

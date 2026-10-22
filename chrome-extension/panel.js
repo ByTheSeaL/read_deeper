@@ -8,7 +8,7 @@
  */
 
 (() => {
-	if (window.ReadDepthPanel) {
+	if (window.ReadDeeperPanel) {
 		return;
 	}
 
@@ -180,8 +180,8 @@
 		const rootNode  = root.getRootNode();
 		const styleHost = rootNode instanceof ShadowRoot ? rootNode : document.head;
 
-		if (!styleHost.querySelector("style[data-read-depth]")) {
-			styleHost.append(el("style", { "data-read-depth": "1", textContent: CSS }));
+		if (!styleHost.querySelector("style[data-read-deeper]")) {
+			styleHost.append(el("style", { "data-read-deeper": "1", textContent: CSS }));
 		}
 
 		const listId = `rd-channels-${Math.random().toString(36).slice(2)}`;
@@ -233,7 +233,7 @@
 
 				if (busy) {
 					setBusy(false);
-					showStatus("Lost the connection to Read Depth. Try again.", true);
+					showStatus("Lost the connection to Read Deeper. Try again.", true);
 				}
 			});
 
@@ -264,7 +264,7 @@
 			const pinned = Boolean(pinnedName);
 
 			pin.textContent = pinned ? "📌 pinned" : "auto";
-			pin.title       = pinned ? "Unpin: let Read Depth pick the channel again" : "Pin this channel for every lookup";
+			pin.title       = pinned ? "Unpin: let Read Deeper pick the channel again" : "Pin this channel for every lookup";
 			pin.classList.toggle("rd-pinned", pinned);
 		}
 
@@ -503,5 +503,5 @@
 		};
 	}
 
-	window.ReadDepthPanel = { mount };
+	window.ReadDeeperPanel = { mount };
 })();

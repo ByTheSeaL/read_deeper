@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">Read Depth</string>
+	<string name="app_name">Read Deeper</string>
 	<!-- Shown in the share sheet and in the text-selection menu. -->
-	<string name="explain_label">Read Depth</string>
+	<string name="explain_label">Read Deeper</string>
 	<string name="query_hint">A word, phrase or sentence…</string>
 	<string name="explain">Explain</string>
 	<string name="channel">CHANNEL</string>

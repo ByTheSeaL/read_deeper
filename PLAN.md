@@ -1,22 +1,22 @@
-# Read Depth — Plan
+# Read Deeper — Plan
 
 Demystify technical language without losing your place. Highlight a word,
 phrase or sentence in anything you're reading (a medical journal, unfamiliar
-code, a work of philosophy), send it to Read Depth, and get a short,
+code, a work of philosophy), send it to Read Deeper, and get a short,
 plain-language explanation back from the LLM you've chosen.
 
 Two clients, one idea:
 
 | Platform | How you trigger a lookup | Where the answer appears |
 |----------|--------------------------|--------------------------|
-| Android  | Highlight → **Share** → Read Depth, or highlight → **Read Depth** in the text-selection menu | A dialog on top of the app you're reading |
+| Android  | Highlight → **Share** → Read Deeper, or highlight → **Read Deeper** in the text-selection menu | A dialog on top of the app you're reading |
 | Android  | Open the app, type into the search box | The app's main screen |
-| Chrome   | Highlight → right-click → **Explain with Read Depth**, or a keyboard shortcut | An overlay panel on the page |
+| Chrome   | Highlight → right-click → **Explain with Read Deeper**, or a keyboard shortcut | An overlay panel on the page |
 | Chrome   | Click the toolbar icon, type into the search box | The popup |
 
 The structure follows `ByTheSeaL/excerpt-anywhere`, which already pairs an
 Android share-target app with an MV3 Chrome extension. The difference is that
-Read Depth has **no server**.
+Read Deeper has **no server**.
 
 ---
 
@@ -29,7 +29,7 @@ Android app ───────┘
 ```
 
 Excerpt Anywhere needs its VPS endpoint because its job is to write files into
-the Obsidian vault that lives there. Read Depth's job is to ask a question and
+the Obsidian vault that lives there. Read Deeper's job is to ask a question and
 show an answer. Nothing has to be stored centrally, so a server would only
 relay requests to OpenRouter.
 
@@ -309,7 +309,7 @@ chrome-extension/
   lib/               shared JS: prompt building, response parsing, storage
 ```
 
-- **Context menu:** "Explain “%s” with Read Depth" on any selection.
+- **Context menu:** "Explain “%s” with Read Deeper" on any selection.
 - **Shortcut:** suggested `Alt+Shift+D`. You can change it at
   `chrome://extensions/shortcuts`.
 - **Streaming:** the service worker reads the response from OpenRouter as it
@@ -348,9 +348,9 @@ android/app/src/main/java/com/readdepth/
 
 - **Two ways into a lookup from another app:**
   - `ACTION_SEND` with `text/plain`: the share sheet. It appears as
-    **Read Depth**.
+    **Read Deeper**.
   - `ACTION_PROCESS_TEXT`: appears directly in the text-selection menu as
-    **Read Depth**. It's one tap faster than Share. Excerpt Anywhere already
+    **Read Deeper**. It's one tap faster than Share. Excerpt Anywhere already
     registers both.
 - **Dialog:** `ExplainActivity` uses a dialog theme, like Excerpt Anywhere's
   share form. The app you were reading stays visible behind it, and Back
@@ -431,7 +431,7 @@ full version:  0.1.<build>     e.g. 0.1.37
   workflow. The repo copy keeps `0.0.0`.
 - **Where you see it:**
   - **Android:** the settings screen and the main screen's menu show
-    "Read Depth 0.1.37".
+    "Read Deeper 0.1.37".
   - **Extension:** the options page shows the same, and so does
     `chrome://extensions`.
 
@@ -441,7 +441,7 @@ So you can always tell which build you're running and match it to a release.
 
 | Trigger | What it does |
 |---------|--------------|
-| Push to `main` | Builds both, then publishes a **GitHub Release** `v0.1.<build>` with `read-depth-0.1.<build>.apk` and `read-depth-extension-0.1.<build>.zip` attached, plus the commit list since the previous release as notes |
+| Push to `main` | Builds both, then publishes a **GitHub Release** `v0.1.<build>` with `read-deeper-0.1.<build>.apk` and `read-deeper-extension-0.1.<build>.zip` attached, plus the commit list since the previous release as notes |
 | Push to any other branch / pull request | Builds both and uploads them as **workflow artifacts** (kept 90 days) so a branch can be tried before merging, without cluttering Releases |
 | Manual (`workflow_dispatch`) | Same as a push to `main` |
 
@@ -482,7 +482,7 @@ stored as GitHub repository secrets:
   - Allow "install unknown apps" for your browser the first time.
   - Later builds install over the top and keep your history.
 - **Chrome:**
-  - Unzip into a fixed folder, e.g. `~/read-depth-extension/`, and use
+  - Unzip into a fixed folder, e.g. `~/read-deeper-extension/`, and use
     **Load unpacked** at `chrome://extensions` once, in developer mode.
   - For each new build, unzip over the same folder and press **Reload** on
     the extension card.
@@ -547,7 +547,7 @@ Added after the first release:
 - **File name:** `YYYY-MM-DD HHmm <term>.md`. It is fixed at the first export
   and stored on the lookup, so later changes rewrite the same file.
 - **Contents:**
-  - YAML front matter: term, channel, date, source, model, `tags: [read-depth]`;
+  - YAML front matter: term, channel, date, source, model, `tags: [read-deeper]`;
   - the term as a heading, the channel and source, the surrounding text as a
     quote, the explanation, and a *Follow-ups* section.
 - **When the note is rewritten:** on re-explain, follow-up, moving the lookup

@@ -76,12 +76,12 @@ jobs:
             fs.writeFileSync(path, JSON.stringify(manifest, null, "\t") + "\n");
           '
 
-          (cd dist/extension && zip -qr "../read-depth-extension-${VERSION}.zip" .)
+          (cd dist/extension && zip -qr "../read-deeper-extension-${VERSION}.zip" .)
 
       - uses: actions/upload-artifact@v4
         with:
-          name: read-depth-extension-${{ env.VERSION }}
-          path: dist/read-depth-extension-${{ env.VERSION }}.zip
+          name: read-deeper-extension-${{ env.VERSION }}
+          path: dist/read-deeper-extension-${{ env.VERSION }}.zip
 
   android:
     needs: version
@@ -127,12 +127,12 @@ jobs:
       - name: Name the APK
         run: |
           mkdir -p dist
-          cp android/app/build/outputs/apk/release/app-release.apk "dist/read-depth-${VERSION}.apk"
+          cp android/app/build/outputs/apk/release/app-release.apk "dist/read-deeper-${VERSION}.apk"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: read-depth-${{ env.VERSION }}.apk
-          path: dist/read-depth-${{ env.VERSION }}.apk
+          name: read-deeper-${{ env.VERSION }}.apk
+          path: dist/read-deeper-${{ env.VERSION }}.apk
 
   release:
     needs: [version, extension, android]
@@ -152,5 +152,5 @@ jobs:
           gh release create "v${VERSION}" dist/* \
             --repo "${{ github.repository }}" \
             --target "${{ github.sha }}" \
-            --title "Read Depth ${VERSION}" \
+            --title "Read Deeper ${VERSION}" \
             --generate-notes

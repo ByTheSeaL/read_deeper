@@ -59,7 +59,7 @@ async function complete(messages) {
 	const started  = Date.now();
 	const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
 		method  : "POST",
-		headers : { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "X-Title": "Read Depth (prompt test)" },
+		headers : { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json", "X-Title": "Read Deeper (prompt test)" },
 		body    : JSON.stringify({ ...requestBody(settings, messages), usage: { include: true } })
 	});
 

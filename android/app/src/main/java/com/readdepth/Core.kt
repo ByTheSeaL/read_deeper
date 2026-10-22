@@ -479,7 +479,7 @@ object Core {
 		if (lookup.sourceTitle.isNotEmpty()) out += "source_title: ${yamlString(lookup.sourceTitle)}"
 		if (lookup.sourceUrl.isNotEmpty()) out += "source: ${yamlString(lookup.sourceUrl)}"
 
-		out += listOf("model: ${yamlString(lookup.model)}", "tags: [read-depth]", "---", "", "# ${oneLine(lookup.text, 200)}", "")
+		out += listOf("model: ${yamlString(lookup.model)}", "tags: [read-deeper]", "---", "", "# ${oneLine(lookup.text, 200)}", "")
 
 		var where = "**Channel:** $channelName"
 

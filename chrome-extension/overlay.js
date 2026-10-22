@@ -5,20 +5,20 @@
  */
 
 (() => {
-	if (window.__readDepthOverlay) {
+	if (window.__readDeeperOverlay) {
 		return;
 	}
 
-	const HOST_ID     = "read-depth-host";
+	const HOST_ID     = "read-deeper-host";
 	const CONTEXT_LEN = 300;
 
 	let host  = null;
 	let panel = null;
 
-	window.__readDepthOverlay = true;
+	window.__readDeeperOverlay = true;
 
 	chrome.runtime.onMessage.addListener((message) => {
-		if (message.type !== "read-depth-open") return;
+		if (message.type !== "read-deeper-open") return;
 
 		const selection = window.getSelection();
 		const selected  = String(selection || "").trim();
@@ -52,7 +52,7 @@
 
 			shadow.append(frame);
 
-			panel = window.ReadDepthPanel.mount(frame, { mode: "overlay", onClose: close });
+			panel = window.ReadDeeperPanel.mount(frame, { mode: "overlay", onClose: close });
 			panel.element.style.padding = "14px";
 
 			document.addEventListener("keydown", onKey, true);

@@ -160,8 +160,8 @@ object OpenRouter {
 
 		connection.connectTimeout = CONNECT_TIMEOUT_MS
 		connection.readTimeout    = READ_TIMEOUT_MS
-		connection.setRequestProperty("HTTP-Referer", "https://github.com/ByTheSeaL/read_depth")
-		connection.setRequestProperty("X-Title", "Read Depth")
+		connection.setRequestProperty("HTTP-Referer", "https://github.com/ByTheSeaL/read_deeper")
+		connection.setRequestProperty("X-Title", "Read Deeper")
 
 		if (apiKey != null) connection.setRequestProperty("Authorization", "Bearer $apiKey")
 

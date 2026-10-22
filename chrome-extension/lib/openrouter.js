@@ -8,8 +8,8 @@ import { OPENROUTER_BASE, SseReader, describeHttpError, requestBody } from "./co
 
 const HEADERS = {
 	"Content-Type" : "application/json",
-	"HTTP-Referer" : "https://github.com/ByTheSeaL/read_depth",
-	"X-Title"      : "Read Depth"
+	"HTTP-Referer" : "https://github.com/ByTheSeaL/read_deeper",
+	"X-Title"      : "Read Deeper"
 };
 
 export class ApiError extends Error {}
