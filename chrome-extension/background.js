@@ -34,12 +34,12 @@ import { ApiError, checkKey, listModels, streamChat } from "./lib/openrouter.js"
 import { DEFAULT_SYSTEM_PROMPT } from "./lib/prompt.js";
 import { getSettings, loadData, updateData } from "./lib/storage.js";
 
-const MENU_ID = "read-depth-explain";
+const MENU_ID = "read-deeper-explain";
 
 chrome.runtime.onInstalled.addListener(() => {
 	chrome.contextMenus.create({
 		id       : MENU_ID,
-		title    : "Explain “%s” with Read Depth",
+		title    : "Explain “%s” with Read Deeper",
 		contexts : ["selection"]
 	});
 });
@@ -69,7 +69,7 @@ async function openOverlay(tab, text) {
 			files  : ["panel.js", "overlay.js"]
 		});
 
-		await chrome.tabs.sendMessage(tab.id, { type: "read-depth-open", text }, { frameId: 0 });
+		await chrome.tabs.sendMessage(tab.id, { type: "read-deeper-open", text }, { frameId: 0 });
 	} catch {
 		if (text === null) {
 			text = await selectionFromAnyFrame(tab).catch(() => "");
@@ -191,7 +191,7 @@ async function requireSettings() {
 	const settings = await getSettings();
 
 	if (!settings.apiKey) {
-		const error = new ApiError("Add your OpenRouter API key in Read Depth's settings first.");
+		const error = new ApiError("Add your OpenRouter API key in Read Deeper's settings first.");
 
 		error.needsKey = true;
 		throw error;

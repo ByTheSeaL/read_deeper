@@ -1,6 +1,6 @@
 /* The toolbar popup: a search box over the same panel, plus recent lookups to reopen. */
 
-const panel = window.ReadDepthPanel.mount(document.getElementById("panel"), {
+const panel = window.ReadDeeperPanel.mount(document.getElementById("panel"), {
 	mode         : "popup",
 	onLookupDone : () => loadRecent()
 });

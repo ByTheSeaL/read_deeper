@@ -4,7 +4,7 @@
  */
 
 const params = new URLSearchParams(location.search);
-const panel  = window.ReadDepthPanel.mount(document.getElementById("panel"), { mode: "window" });
+const panel  = window.ReadDeeperPanel.mount(document.getElementById("panel"), { mode: "window" });
 
 panel.lookUp({
 	text        : params.get("q") || "",

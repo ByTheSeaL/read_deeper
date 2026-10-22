@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<style name="Theme.ReadDepth" parent="Theme.AppCompat.DayNight.DarkActionBar">
+	<style name="Theme.ReadDeeper" parent="Theme.AppCompat.DayNight.DarkActionBar">
 		<item name="colorPrimary">@color/accent</item>
 		<item name="colorPrimaryDark">@color/accent</item>
 		<item name="colorAccent">@color/accent</item>
@@ -10,7 +10,7 @@
 		The lookup from another app is a dialog rather than a full screen: you
 		are reading something, and should land back there with one tap.
 	-->
-	<style name="Theme.ReadDepth.Dialog" parent="Theme.AppCompat.DayNight.Dialog">
+	<style name="Theme.ReadDeeper.Dialog" parent="Theme.AppCompat.DayNight.Dialog">
 		<item name="colorPrimary">@color/accent</item>
 		<item name="colorAccent">@color/accent</item>
 		<item name="windowNoTitle">true</item>

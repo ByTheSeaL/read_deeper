@@ -1,10 +1,10 @@
-# Read Depth
+# Read Deeper
 
 Look up words, phrases and sentences while you read technical writing, code,
 philosophy and anything else, and get a short, plain explanation so you can
 keep going. It works through:
 
-- **Android:** highlight text, then pick **Read Depth** from the text-selection
+- **Android:** highlight text, then pick **Read Deeper** from the text-selection
   menu or from **Share**. Or open the app and type into the search box.
 - **Chrome:** highlight text, then right-click and choose **Explain with Read
   Depth**, or press **Alt+Shift+D**. Or click the toolbar icon and type.
@@ -38,15 +38,17 @@ other branches are attached to their workflow run under **Actions**.
 
 **Android:**
 
-1. On your phone, download `read-depth-<version>.apk` and open it.
+1. On your phone, download `read-deeper-<version>.apk` and open it.
 2. The first time, allow your browser to "install unknown apps".
 3. Later builds install over the top and keep your history, as long as they're
    signed with the same key (see **One-time setup** below).
 
 **Chrome:**
 
-1. Unzip `read-depth-extension-<version>.zip` into a folder you'll keep, e.g.
-   `~/read-depth-extension/`.
+1. Unzip `read-deeper-extension-<version>.zip` into a folder you'll keep, e.g.
+   `~/read-deeper-extension/`.
+   Already installed as Read Depth? Keep unzipping into your old folder:
+   Chrome ties an unpacked extension's settings and history to its folder.
 2. Open `chrome://extensions`, turn on **Developer mode**, click **Load
    unpacked** and choose that folder.
 3. For a new build, unzip over the same folder and click **Reload** on the

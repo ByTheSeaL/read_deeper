@@ -92,7 +92,7 @@ class LookupPanel(
 			val text  = (listOf(shown.explanation) + shown.thread.map { "Q: ${it.q}\n${it.a}" }).joinToString("\n\n")
 			val clip  = activity.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
-			clip.setPrimaryClip(ClipData.newPlainText("Read Depth", text))
+			clip.setPrimaryClip(ClipData.newPlainText("Read Deeper", text))
 			copy.setText(R.string.copied)
 			copy.postDelayed({ copy.setText(R.string.copy) }, 1500)
 		}

@@ -57,7 +57,7 @@ class SettingsActivity : AppCompatActivity() {
 		defaultPrompt = Prefs.defaultSystemPrompt(this)
 
 		val versionName = packageManager.getPackageInfo(packageName, 0).versionName
-		findViewById<TextView>(R.id.version).text = "Read Depth $versionName"
+		findViewById<TextView>(R.id.version).text = "Read Deeper $versionName"
 
 		reasoning.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, REASONING_EFFORTS)
 

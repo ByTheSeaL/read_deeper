@@ -80,7 +80,7 @@ class LookupEngine(context: Context) {
 		val settings = Prefs.load(app)
 
 		if (settings.apiKey.isEmpty()) {
-			ui { onError(op, "Add your OpenRouter API key in Read Depth's settings first.", true) }
+			ui { onError(op, "Add your OpenRouter API key in Read Deeper's settings first.", true) }
 			return null
 		}
 
