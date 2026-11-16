@@ -80,6 +80,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
+          retention-days: 5  # Releases keep the files for good; this is only the Actions copy
           name: read-deeper-extension-${{ env.VERSION }}
           path: dist/read-deeper-extension-${{ env.VERSION }}.zip
 
@@ -123,6 +124,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
+          retention-days: 5  # Releases keep the files for good; this is only the Actions copy
           name: read-deeper-obsidian-${{ env.VERSION }}
           path: dist/read-deeper-obsidian-${{ env.VERSION }}.zip
 
@@ -174,6 +176,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
+          retention-days: 5  # Releases keep the files for good; this is only the Actions copy
           name: read-deeper-${{ env.VERSION }}.apk
           path: dist/read-deeper-${{ env.VERSION }}.apk
 
